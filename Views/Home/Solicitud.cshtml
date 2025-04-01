@@ -1,0 +1,211 @@
+﻿@{
+    ViewData["Title"] = "Solicitudes";
+}
+
+<div class="container">
+    <h1>Solicitudes</h1>
+    <button id="btnCargar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <button id="btnCargar" class="btn btn-primary">Cargar Solicitudes</button>
+    
+    
+    
+</div>
+<br />
+<br />
+<div class="wrapper">
+
+    
+    <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+        <li><a href="#tab1" class="active">Desembolso</a></li>
+        <li><a href="#tab2">Plan Cuotas</a></li>
+        
+    </ul>
+    <section id="first-tab-group" class="tabgroup">
+        <div id="tab1">
+            <h3>Plan de Pagos</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Cuota</th>
+                            <th>Fecha Pago</th>
+                            <th>Frecuencia</th>
+                            <th>Sal. Cap.</th>
+                            <th>Capital</th>
+                            <th>Interés</th>
+                            <th>Seg. Com.</th>
+                            <th>Atraso</th>
+                            <th>Interés</th>
+                            <th>Monto Cuota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>02/MAY/2023</td>
+                            <td>35</td>
+                            <td class="text-right">3,000.00</td>
+                            <td class="text-right">161.46</td>
+                            <td class="text-right">174.54</td>
+                            <td class="text-right">9.90</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right">345.90</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>02/JUN/2023</td>
+                            <td>31</td>
+                            <td class="text-right">2,838.54</td>
+                            <td class="text-right">195.42</td>
+                            <td class="text-right">145.80</td>
+                            <td class="text-right">4.68</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right">345.90</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>02/JUL/2023</td>
+                            <td>30</td>
+                            <td class="text-right">2,643.12</td>
+                            <td class="text-right">210.27</td>
+                            <td class="text-right">131.27</td>
+                            <td class="text-right">4.36</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right">345.90</td>
+                        </tr>
+                        <!-- Continúa con las demás filas según tu imagen -->
+                        <tr>
+                            <td>12</td>
+                            <td>02/ABR/2024</td>
+                            <td>31</td>
+                            <td class="text-right">328.36</td>
+                            <td class="text-right">328.36</td>
+                            <td class="text-right">16.87</td>
+                            <td class="text-right">0.54</td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right">345.77</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="font-weight-bold">
+                            <td colspan="9" class="text-right">Total:</td>
+                            <td class="text-right">4,150.67</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div id="tab2">
+            <h3>Resumen del Crédito</h3>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Monto Total:</strong> $3,000.00</p>
+                            <p><strong>Tasa de Interés:</strong> 12% Anual</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Plazo:</strong> 12 meses</p>
+                            <p><strong>Fecha de Desembolso:</strong> 01/ABR/2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <!-- modal-lg para tamaño grande en pantallas grandes -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Título del Modal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="contenedorSolicitudes" class="mt-3">
+                <!-- Aquí se cargarán los datos -->
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+                $('#btnCargar').click(function() {
+            $.post('@Url.Action("CargarSolicitudes", "Home")')
+                .done(function(data) {
+                    $('#contenedorSolicitudes').html(data);
+                })
+                .fail(function(xhr) {
+                    console.error("Error:", xhr.responseText);
+                    alert("Error al cargar solicitudes: " + xhr.responseText);
+                });
+        });
+         $('.tabgroup > div').hide();
+        $('.tabgroup > div:first-of-type').show();
+        $('.tabs a').click(function(e){
+          e.preventDefault();
+            var $this = $(this),
+                tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+                others = $this.closest('li').siblings().children('a'),
+                target = $this.attr('href');
+            others.removeClass('active');
+            $this.addClass('active');
+            $(tabgroup).children('div').hide();
+            $(target).show();
+
+        })
+    </script>
+}
+@section Styles {
+    <style>
+
+        /* Tus estilos CSS personalizados */
+        .tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .tabs a {
+                padding: 10px 15px;
+                background: #eee;
+                margin-right: 5px;
+                text-decoration: none;
+                color: #333;
+            }
+
+                .tabs a.active {
+                    background: #007bff;
+                    color: white;
+                }
+
+        .tabgroup > div {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+            .tabgroup > div:first-of-type {
+                display: block;
+            }
+    </style>
+}

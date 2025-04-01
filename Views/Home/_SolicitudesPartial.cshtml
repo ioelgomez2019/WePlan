@@ -1,0 +1,39 @@
+﻿@model List<Solicitud>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Capital</th>
+            <th>Cuotas</th>
+            <th>Fecha Registro</th>
+            <th>Desembolso</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdSolicitud</td>
+                <td>@item.CNombre</td>
+                <td>@item.NCapitalSolicitado.ToString("C2")</td>
+                <td>@item.NCuotas</td>
+                <td>@item.DFechaRegistro.ToString("dd/MM/yyyy") @item.HFechaRegistro.ToString(@"hh\:mm")</td>
+                <td>
+                    <button onclick="mostrarPlanPagos(@item.IdSolicitud)" class="btn btn-primary">
+                        <span class="material-symbols-outlined">
+                            app_registration
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">No se encontraron solicitudes</div>
+}
