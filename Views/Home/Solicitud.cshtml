@@ -3,7 +3,6 @@
 }
 
 <div class="container">
-    <h1>Solicitudes</h1>
     <button id="btnCargar" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
     </button>
@@ -12,7 +11,7 @@
     
     
 </div>
-<br />
+
 <br />
 <div class="wrapper">
 
@@ -24,103 +23,22 @@
     </ul>
     <section id="first-tab-group" class="tabgroup">
         <div id="tab1">
-            <h3>Plan de Pagos</h3>
+            
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Cuota</th>
-                            <th>Fecha Pago</th>
-                            <th>Frecuencia</th>
-                            <th>Sal. Cap.</th>
-                            <th>Capital</th>
-                            <th>Interés</th>
-                            <th>Seg. Com.</th>
-                            <th>Atraso</th>
-                            <th>Interés</th>
-                            <th>Monto Cuota</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>02/MAY/2023</td>
-                            <td>35</td>
-                            <td class="text-right">3,000.00</td>
-                            <td class="text-right">161.46</td>
-                            <td class="text-right">174.54</td>
-                            <td class="text-right">9.90</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">345.90</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>02/JUN/2023</td>
-                            <td>31</td>
-                            <td class="text-right">2,838.54</td>
-                            <td class="text-right">195.42</td>
-                            <td class="text-right">145.80</td>
-                            <td class="text-right">4.68</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">345.90</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>02/JUL/2023</td>
-                            <td>30</td>
-                            <td class="text-right">2,643.12</td>
-                            <td class="text-right">210.27</td>
-                            <td class="text-right">131.27</td>
-                            <td class="text-right">4.36</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">345.90</td>
-                        </tr>
-                        <!-- Continúa con las demás filas según tu imagen -->
-                        <tr>
-                            <td>12</td>
-                            <td>02/ABR/2024</td>
-                            <td>31</td>
-                            <td class="text-right">328.36</td>
-                            <td class="text-right">328.36</td>
-                            <td class="text-right">16.87</td>
-                            <td class="text-right">0.54</td>
-                            <td class="text-right"></td>
-                            <td class="text-right"></td>
-                            <td class="text-right">345.77</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr class="font-weight-bold">
-                            <td colspan="9" class="text-right">Total:</td>
-                            <td class="text-right">4,150.67</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-        <div id="tab2">
-            <h3>Resumen del Crédito</h3>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p><strong>Monto Total:</strong> $3,000.00</p>
-                            <p><strong>Tasa de Interés:</strong> 12% Anual</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p><strong>Plazo:</strong> 12 meses</p>
-                            <p><strong>Fecha de Desembolso:</strong> 01/ABR/2023</p>
-                        </div>
-                    </div>
+                <div id="planPagosContainer">
+                    <!-- Aquí se cargarán los datos -->
+
                 </div>
+                
             </div>
         </div>
+        
     </section>
 </div>
 
+@* <div id="planPagosContainer" class="mt-4 p-3 border rounded bg-light">
+</div>
+ *@
 
 
 
@@ -136,7 +54,7 @@
             </div>
             <div id="contenedorSolicitudes" class="mt-3">
                 <!-- Aquí se cargarán los datos -->
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -148,7 +66,10 @@
 
 @section Scripts {
     <script>
-                $('#btnCargar').click(function() {
+                 $('#btnCargar').click(function() {
+            // Cierra el modal antes de la petición AJAX
+            $('#modalContenedor').modal('hide'); // Ajusta el ID según tu modal
+
             $.post('@Url.Action("CargarSolicitudes", "Home")')
                 .done(function(data) {
                     $('#contenedorSolicitudes').html(data);
@@ -158,7 +79,30 @@
                     alert("Error al cargar solicitudes: " + xhr.responseText);
                 });
         });
-         $('.tabgroup > div').hide();
+        function mostrarPlanPagos(idSolicitud) {
+                    
+            // Cierra el modal (ajusta el ID según tu HTML)
+                   $('#exampleModal').modal('hide');
+                   $('.modal-backdrop').remove(); // Elimina el fondo bloqueante
+                // 2. Elimina cualquier plan de pagos existente
+                    $('#auxlimpiar').remove();
+            $.ajax({
+                url: '@Url.Action("ObtenerPlanPagos", "Home")',
+                type: 'GET',
+                data: { idSolicitud: idSolicitud },
+                success: function (response) {
+                    console.log(response);
+                    // Inserta la vista debajo de los botones
+                    $('#planPagosContainer').append(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al cargar el plan de pagos:", error);
+                    alert("Ocurrió un error al cargar el plan de pagos.");
+                }
+            });
+        }
+        
+        $('.tabgroup > div').hide();
         $('.tabgroup > div:first-of-type').show();
         $('.tabs a').click(function(e){
           e.preventDefault();
@@ -184,6 +128,14 @@
             padding: 0;
             margin: 0;
         }
+
+        .wrapper {
+        height: Auto; /* Altura fija */
+        max-height: 80vh; /* Altura máxima del 80% del viewport */
+        overflow-y: auto; /* Muestra scroll solo si es necesario */
+        border: 1px solid #ddd; /* Opcional: para visualizar los límites */
+    }
+
 
             .tabs a {
                 padding: 10px 15px;

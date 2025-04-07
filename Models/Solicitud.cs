@@ -1,5 +1,8 @@
-﻿public class Solicitud
+﻿using System.Text;
+
+public class Solicitud
 {
+    //identidades existentes
     public int IdSolicitud { get; set; }
     public string CNombre { get; set; }
     public decimal NCapitalSolicitado { get; set; }
@@ -17,4 +20,7 @@
     public int IdTipoDocumento { get; set; }
     public int IdTipoPersona { get; set; }
     public string CTelefono { get; set; }
+
+  
+
 }

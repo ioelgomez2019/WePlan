@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebPlan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4d0277238fee75d0bc1a92d866f6102cf79e0d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebPlan")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebPlan")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

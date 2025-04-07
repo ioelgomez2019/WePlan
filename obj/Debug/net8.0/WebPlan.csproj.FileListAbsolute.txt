@@ -79,3 +79,4 @@ D:\JOELSGA\proyectos\WebPlan\WebPlan\obj\Debug\net8.0\refint\WebPlan.dll
 D:\JOELSGA\proyectos\WebPlan\WebPlan\obj\Debug\net8.0\WebPlan.pdb
 D:\JOELSGA\proyectos\WebPlan\WebPlan\obj\Debug\net8.0\WebPlan.genruntimeconfig.cache
 D:\JOELSGA\proyectos\WebPlan\WebPlan\obj\Debug\net8.0\ref\WebPlan.dll
+D:\JOELSGA\proyectos\WebPlan\WebPlan\obj\Debug\net8.0\WebPlan.sourcelink.json

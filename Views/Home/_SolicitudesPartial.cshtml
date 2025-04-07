@@ -21,10 +21,12 @@
                 <td>@item.NCuotas</td>
                 <td>@item.DFechaRegistro.ToString("dd/MM/yyyy") @item.HFechaRegistro.ToString(@"hh\:mm")</td>
                 <td>
-                    <button onclick="mostrarPlanPagos(@item.IdSolicitud)" class="btn btn-primary">
+
+                        <button onclick="mostrarPlanPagos(@item.IdSolicitud)" class="btn btn-primary"  >
                         <span class="material-symbols-outlined">
                             app_registration
                         </span>
+
                     </button>
                 </td>
             </tr>
@@ -36,4 +38,7 @@
 @if (!Model.Any())
 {
     <div class="alert alert-warning">No se encontraron solicitudes</div>
+}
+@section Scripts {
+
 }

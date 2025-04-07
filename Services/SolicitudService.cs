@@ -62,7 +62,61 @@ namespace WebPlan.Services
             }
             return solicitudes;
         }
-    private TimeSpan ParseTimeSpan(string timeString)
+        public async Task<DataTable> ObtenerPlanPagosPorIdSolicitudAsync(int idSolicitud)
+        {
+            var connectionString = _config.GetConnectionString("DefaultConnection");
+            DataTable dt = new DataTable();
+
+            DataTable dtplanpago = new DataTable();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var cmd = new SqlCommand("CRE_DatoSolicitudxIDSolicitud_sp", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idSolicitud", idSolicitud);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        dt.Load(reader); // Carga los datos directamente en un DataTable
+                    }
+                }
+            }
+           
+
+            return dt;
+        }
+
+        public async Task<DataTable> ObtenerDatosSolicitudAsync(int idSolicitud)
+        {
+            var connectionString = _config.GetConnectionString("DefaultConnection");
+            DataTable dt = new DataTable();
+
+            DataTable dtplanpago = new DataTable();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var cmd = new SqlCommand("CRE_DatoSolicitudxIDSolicitud_sp", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idSolicitud", idSolicitud);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        dt.Load(reader); // Carga los datos directamente en un DataTable
+                    }
+                }
+            }
+
+
+            return dt;
+        }
+
+        private TimeSpan ParseTimeSpan(string timeString)
         {
             if (string.IsNullOrEmpty(timeString))
                 return TimeSpan.Zero;

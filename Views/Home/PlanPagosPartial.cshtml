@@ -1,0 +1,172 @@
+﻿@{
+    var planPagos = ViewBag.PlanPagos as System.Data.DataTable;
+    var SolicitudPlan = ViewBag.SolicitudPlan as System.Data.DataTable;
+    string nombreCliente = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["cNombre"].ToString()
+                          : "No hay datos";
+    string idCli = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["idCli"].ToString()
+                          : "No hay datos";
+    string cDocumentoID = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["cDocumentoID"].ToString()
+                          : "No hay datos";
+    string cCodCliente = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["cCodCliente"].ToString()
+                          : "No hay datos";
+    string nCapitalAprobado = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["nCapitalAprobado"].ToString()
+                          : "No hay datos";
+    string nTasaAprobada = SolicitudPlan?.Rows?.Count > 0
+                          ? SolicitudPlan.Rows[0]["nTasaAprobada"].ToString()
+                          : "No hay datos";
+    string nCuotas = SolicitudPlan?.Rows?.Count > 0
+                              ? SolicitudPlan.Rows[0]["nCuotas"].ToString()
+                              : "No hay datos";
+    string dFechaPrimeraCuota = SolicitudPlan?.Rows?.Count > 0
+                                  ? SolicitudPlan.Rows[0]["dFechaPrimeraCuota"].ToString()
+                                  : "No hay datos";
+    string dFechaDesembolsoSugerido = SolicitudPlan?.Rows?.Count > 0
+                                    ? SolicitudPlan.Rows[0]["dFechaDesembolsoSugerido"].ToString()
+                                    : "No hay datos";
+
+    var dtPlanPago = ViewBag.dtPlanPago as System.Data.DataTable;
+    var Datoaux = ViewBag.Datoaux;
+    var dFecDesemb = ViewBag.dFecDesemb;
+}
+@* MOSTRAR DATOS QEU TENGO DEL SP TRAIDO DE UNA PERSONA *@
+
+<div id="auxlimpiar">
+    <spam>@Datoaux</spam>
+    <div id="tab2">
+        <h3>Resumen del Crédito</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>idCli:</strong> @idCli</p>
+                        <p><strong>nombreCliente:</strong>@nombreCliente</p>
+                        <p><strong>Documento:</strong>@cDocumentoID</p>
+                        <p><strong>Codigo del Cliente:</strong>@cCodCliente</p>
+                        <p><strong>nombreCliente:</strong>@nombreCliente</p>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Monto Aprobado:</strong>@nCapitalAprobado</p>
+                        <p><strong>Tasa Aprobada:</strong>@nTasaAprobada</p>
+                        <p><strong>Numero de Cuotas:</strong>@nCuotas</p>
+                        <p><strong>Fecha de Desembolso:</strong>@dFecDesemb</p>
+                        <p><strong>Fecha de Primera Cuota:</strong>@dFechaPrimeraCuota</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@* 
+    <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            
+                                <div class="mb-3">
+                                      <label for="text" class="form-label">idCli</label>
+                    <input type="email" value="@idCli" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    
+                                                </div>
+                                <div class="mb-3">
+                                    <label for="text" class="form-label">nombreCliente</label>
+                                    <input type="email" value="@nombreCliente" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                </div>
+                                <div class="mb-3">
+                    <label for="text" class="form-label">Documento : </label>
+                    <input type="email" value="@cDocumentoID" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                </div>
+                                <div class="mb-3">
+                    <label for="text" class="form-label">Codigo del Cliente</label>
+                    <input type="email" value="@cCodCliente" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                </div>
+                                
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            
+                <div class="mb-3">
+                    <label for="text" class="form-label">Monto Aprobado</label>
+                    <input type="email" value="@nCapitalAprobado" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                <div class="mb-3">
+                        <label for="text" class="form-label">Tasa</label>
+                    <input type="email" value="@nTasaAprobada" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                    </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Numero de Cuotas</label>
+                    <input type="email" value="@nCuotas" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Fecha de Desembolso</label>
+                    <input type="email" value="@dFechaDesembolsoSugerido" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Fecha de Primera Cuota</label>
+                    <input type="email" value="@dFechaPrimeraCuota" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                </div>
+                                <div class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Checkbox</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                            <label class="form-check-label" for="gridCheck1">
+                                                Check me out
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+                    
+                   
+                </div> *@
+    
+
+    @* MOSTRAR El DatatableFinal *@
+    <div id="planpago">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    @foreach (System.Data.DataColumn col in dtPlanPago.Columns)
+                    {
+                        <th>@col.ColumnName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in dtPlanPago.Rows)
+                {
+                    <tr>
+                        @foreach (var item in row.ItemArray)
+                        {
+                            <td>@item</td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr class="font-weight-bold">
+                    <td colspan="9" class="text-right">Total:</td>
+                    <td class="text-right">0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+   
+</div>

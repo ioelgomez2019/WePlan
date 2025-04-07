@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQbGFuUGFnb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/PlanPagosPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQbGFuUGFnb3NQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,14 +42,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/TipoSeguro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaXBvU2VndXJvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/_DetallesSolicitud.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfRGV0YWxsZXNTb2xpY2l0dWQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/_PlanPagos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfUGxhblBhZ29zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/JOELSGA/proyectos/WebPlan/WebPlan/Views/Home/_SolicitudesPartial.cshtml]
